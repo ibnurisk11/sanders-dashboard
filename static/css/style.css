@@ -1,0 +1,140 @@
+/*
+    static/css/style.css
+
+    This file now contains only custom CSS that cannot be easily
+    replicated with Tailwind CSS utility classes, or specific overrides.
+    Most styling should be done directly in HTML using Tailwind classes.
+*/
+
+/* Wrapper Toggled State - This is a custom animation not easily done with Tailwind utility classes alone */
+#wrapper {
+    /* Tailwind classes handle display, min-height, and flex.
+       Only transition is kept here if not fully covered by Tailwind utility classes. */
+    transition: all 0.3s ease-in-out;
+}
+
+#sidebar-wrapper {
+    /* Tailwind classes handle width, background-color, color, padding, flex-shrink,
+       box-shadow, position, z-index.
+       Only transform and its transition are kept here for the toggle animation. */
+    transition: all 0.3s ease-in-out;
+    transform: translateX(0); /* Default position */
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px; /* Hide sidebar off-screen */
+    /* Using margin-left for consistency with previous setup,
+       but transform: translateX(-250px); is generally preferred with flexbox.
+       If margin-left causes issues, switch to transform. */
+}
+
+/* #wrapper.toggled #page-content-wrapper is commented out as flex-grow should handle it */
+/* #wrapper.toggled #page-content-wrapper {
+    margin-left: 0;
+    width: 100%;
+} */
+
+/* Error messages - Keep this if you use the 'error' class directly in HTML for custom error styling */
+.error {
+    color: #dc3545; /* Bootstrap red */
+    font-weight: bold;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+
+/* Media Queries - Keep these for custom responsive overrides if Tailwind's classes aren't sufficient */
+@media (max-width: 768px) {
+    #wrapper {
+        flex-direction: column; /* Stack sidebar and content vertically */
+    }
+    #sidebar-wrapper {
+        width: 100%;
+        height: auto; /* Allow sidebar height to be determined by content */
+        margin-left: 0 !important; /* Force sidebar to be visible */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+        padding-bottom: 10px; /* Add some padding at the bottom */
+        transform: translateX(0) !important; /* Ensure it's visible on small screens */
+    }
+    /* When toggled, sidebar should still be visible on small screens */
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0; /* Keep this for consistency, though transform might override */
+        transform: translateX(0); /* Ensure it stays visible on small screens even if toggled */
+    }
+    #page-content-wrapper {
+        margin: 15px; /* Smaller margin for content */
+        padding: 15px;
+    }
+    /*
+        These styles below are likely handled by Tailwind classes in HTML now.
+        Only uncomment/add if specific overrides are needed.
+    */
+    /*
+    .yellow-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+        margin: -15px -15px 15px -15px;
+    }
+    .yellow-header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    .yellow-header .profile-info {
+        margin-left: 0;
+        margin-top: 5px;
+        text-align: left;
+    }
+    .sidebar-toggle-btn {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .filter-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 10px;
+    }
+    .filter-controls .form-group {
+        width: 100%;
+        min-width: unset;
+    }
+    .filter-controls .btn-container {
+        flex-direction: column;
+        align-items: stretch;
+        margin-left: 0;
+        width: 100%;
+    }
+    .btn-sanders-yellow,
+    .filter-controls .form-control {
+        width: 100%;
+    }
+    th, td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    */
+}
+
+@media (max-width: 576px) {
+    /*
+        These styles below are likely handled by Tailwind classes in HTML now.
+        Only uncomment/add if specific overrides are needed.
+    */
+    /*
+    .yellow-header h1 {
+        font-size: 1.3rem;
+    }
+    .sidebar-heading {
+        font-size: 1.3rem;
+    }
+    .pagination-controls {
+        flex-direction: column;
+    }
+    .pagination-controls button,
+    .pagination-controls span {
+        margin: 5px 0;
+    }
+    */
+}

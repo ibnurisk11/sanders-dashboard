@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sanders Dashboard</title>
+    <!-- Add Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+        @layer base {
+          body {
+            font-family: 'Inter', sans-serif;
+          }
+        }
+        /* Custom styles for the gradient background and overlay */
+        .login-bg {
+            background: linear-gradient(135deg, #FFC107 0%, #FFA000 100%); /* Sanders yellow gradient */
+            position: relative;
+            overflow: hidden;
+        }
+        .login-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .login-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at bottom right, rgba(0,0,0,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            opacity: 0.2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100 login-bg text-gray-800">
+    <div class="login-container bg-white p-8 rounded-lg shadow-2xl w-full max-w-md transform transition-all duration-300 hover:scale-105 relative z-10">
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-extrabold text-yellow-500">Sanders Dashboard</h2>
+        </div>
+        <h3 class="text-center text-2xl font-semibold mb-6 text-gray-700">Login</h3>
+
+        {% if form.errors %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">Error!</strong>
+                <span class="block sm:inline">Username atau password salah.</span>
+            </div>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+            <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">Peringatan!</strong>
+                <span class="block sm:inline">Akun Anda tidak memiliki akses ke halaman ini. Silakan login dengan akun yang memiliki akses.</span>
+            </div>
+            {% else %}
+            <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <strong class="font-bold">Informasi!</strong>
+                <span class="block sm:inline">Silakan login untuk melihat halaman ini.</span>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <form method="post" class="space-y-5">
+            {% csrf_token %} {# Penting untuk keamanan Django #}
+            <div>
+                <label for="id_username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" name="username" id="id_username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+            </div>
+            <div>
+                <label for="id_password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" name="password" id="id_password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+            </div>
+            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-gray-800 font-bold py-2 px-4 rounded-md w-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50">Login</button>
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+</body>
+</html>
