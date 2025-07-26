@@ -1,5 +1,5 @@
 Sanders Dashboard: Panel Admin Manajemen Pengguna & Pinjaman
-(Ganti placeholder ini dengan screenshot asli dari dashboard Anda!)
+![alt text](image-1.png)
 
 Gambaran Umum Proyek
 Sanders Dashboard adalah panel administrasi backend yang kuat dan responsif, dirancang khusus untuk mengelola data pengguna (borrower) dan pinjaman dalam ekosistem perusahaan fintech Sanders. Dibangun dengan Django untuk backend yang kokoh dan Tailwind CSS untuk antarmuka pengguna yang modern dan adaptif, dashboard ini menyediakan alat yang efisien untuk pemantauan dan manajemen operasional.
@@ -24,17 +24,15 @@ Frontend: HTML, JavaScript
 
 Styling: Tailwind CSS (via CDN)
 
-Database: (Sebutkan database yang Anda gunakan, misal: PostgreSQL, MySQL, SQLite)
+Database: MySQL
 
 Cara Menjalankan Proyek (Lokal)
 Untuk menjalankan proyek ini di lingkungan lokal Anda, ikuti langkah-langkah berikut:
 
 Clone Repositori:
 
-git clone https://github.com/YourUsername/sanders-admin-dashboard.git
-cd sanders-admin-dashboard
-
-(Ganti YourUsername dan sanders-admin-dashboard dengan detail repositori Anda)
+git clone https://github.com/ibnurisk11/sanders-dashboard.git
+cd sanders-dashboard
 
 Buat dan Aktifkan Virtual Environment (Opsional tapi Disarankan):
 
